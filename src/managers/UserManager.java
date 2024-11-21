@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class UserManager {
 
     private static UserManager instance;
-    private DatabaseHelper dbHelper = new DatabaseHelper();
+    private final DatabaseHelper dbHelper = new DatabaseHelper();
     private User loggedInUser;
 
     private UserManager() {}
@@ -42,7 +42,8 @@ public class UserManager {
                         resultSet.getInt("user_id"),
                         resultSet.getString("username"),
                         resultSet.getString("password"),
-                        resultSet.getTimestamp("date_joined")
+                        resultSet.getTimestamp("date_joined"),
+                        resultSet.getBoolean("is_admin")
                 );
                 return loggedInUser;
             }
@@ -51,8 +52,9 @@ public class UserManager {
         }
         return null;
     }
-    
-    public boolean valid_username(String username) {
+
+
+    public boolean validUsername(String username) {
         String query = "SELECT username FROM users WHERE username = ?";
         try (Connection connection = dbHelper.connect();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -68,14 +70,15 @@ public class UserManager {
         }
     }
 
-    public void addUser(String username, String password) {
-        String query = "INSERT INTO users (username, password) VALUES (?, ?)";
+    public void addUser(String username, String password, boolean isAdmin) {
+        String query = "INSERT INTO users (username, password, is_admin) VALUES (?, ?, ?)";
 
         try (Connection connection = dbHelper.connect();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
+            preparedStatement.setBoolean(3, isAdmin);
 
             preparedStatement.executeUpdate();
         } catch (Exception e) {

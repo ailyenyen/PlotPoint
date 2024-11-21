@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ReviewManager {
-    private DatabaseHelper dbHelper = new DatabaseHelper();
+    private final DatabaseHelper dbHelper = new DatabaseHelper();
 
     public boolean hasUserReviewedBook(int userId, int bookId) {
         String query = "SELECT COUNT(*) FROM reviews WHERE user_id = ? AND book_id = ?";

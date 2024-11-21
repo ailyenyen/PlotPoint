@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProfileMenu extends Menu {
-    private UserManager userManager = UserManager.getInstance();
-    private ShelfManager shelfManager = new ShelfManager();
-    private ReviewManager reviewManager = new ReviewManager();
-    private BookManager bookManager = new BookManager();
-    private BookMenu bookMenu = new BookMenu(input);
+    private final UserManager userManager = UserManager.getInstance();
+    private final ShelfManager shelfManager = new ShelfManager();
+    private final ReviewManager reviewManager = new ReviewManager();
+    private final BookManager bookManager = new BookManager();
+    private final BookMenu bookMenu = new BookMenu(input);
 
     public ProfileMenu(Scanner input) {
         super(input);
@@ -161,7 +161,7 @@ public class ProfileMenu extends Menu {
 
         if (booksInShelf.isEmpty()) {
             System.out.printf("│ %-44s │\n", "No books in this shelf.");
-            input.nextLine();
+            System.out.println("└──────────────────────────────────────────────┘");
             System.out.print("\nPress enter to return.");
             input.nextLine();
             input.nextLine();

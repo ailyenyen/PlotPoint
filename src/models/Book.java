@@ -1,12 +1,10 @@
-// Book.java
 package src.models;
 
 import java.util.List;
-import src.managers.*;
-
+import src.managers.BookManager;
 
 public class Book {
-    private BookManager bookManager = new BookManager();
+    private final BookManager bookManager = new BookManager();
 
     private int bookId;
     private String title;
@@ -16,6 +14,8 @@ public class Book {
     private double overallRating;
     private List<String> genres;
     private String synopsis;
+    private  List<String> moods;
+    private int reviewCount;
 
     public Book(int bookId, String title, String author, String publishedDate, int pageCount, double overallRating, String synopsis) {
         this.bookId = bookId;
@@ -25,7 +25,9 @@ public class Book {
         this.pageCount = pageCount;
         this.overallRating = overallRating;
         this.synopsis = synopsis;
-        this.genres = bookManager.loadGenres(bookId);  // Load genres for this book
+        this.genres = bookManager.loadGenres(bookId);
+        this.moods = bookManager.getBookMoods(bookId);
+        this.reviewCount = bookManager.getRatingAndReviewCount(bookId);
     }
 
     private String centerText(String text, int width) {
@@ -43,10 +45,9 @@ public class Book {
         sb.append(String.format("│ %-44s │\n", "Published Date: " + publishedDate));
         sb.append(String.format("│ %-44s │\n", "Page Count: " + pageCount));
         sb.append(String.format("│ %-44s │\n", String.format("Overall Rating: %.2f", overallRating)));
-
-        // Display genres
         sb.append(String.format("│ %-44s │\n", "Genres: " + String.join(", ", genres)));
-
+        sb.append(String.format("│ %-44s │\n", "Moods: " + String.join(", ", moods)));
+        sb.append(String.format("│ %-44s │\n", "Reviews: " + reviewCount + " reviews"));
         sb.append("├──────────────────────────────────────────────┤\n");
         sb.append("│ Synopsis:                                    │\n");
 
@@ -72,5 +73,19 @@ public class Book {
         return author;
     }
 
-    public String getOverallRating() { return String.format("%.2f", overallRating); }
+    public String getPublishedDate() {
+        return publishedDate;
+    }
+
+    public int getPageCount() {
+        return pageCount;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public String getOverallRating() {
+        return String.format("%.2f", overallRating);
+    }
 }

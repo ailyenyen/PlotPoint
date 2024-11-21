@@ -7,8 +7,8 @@ import src.models.Book;
 import src.models.User;
 
 public class BookSearchMenu extends Menu {
-    private BookManager bookManager = new BookManager();
-    private BookMenu bookMenu = new BookMenu(input);
+    private final BookManager bookManager = new BookManager();
+    private final BookMenu bookMenu = new BookMenu(input);
 
     public BookSearchMenu(Scanner input) {
         super(input);

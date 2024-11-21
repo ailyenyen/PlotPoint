@@ -1,6 +1,5 @@
 package src.menus;
 
-import src.managers.BookManager;
 import src.managers.ReviewManager;
 import src.managers.ShelfManager;
 import src.managers.UserManager;
@@ -12,9 +11,9 @@ import java.util.Scanner;
 
 public class BookMenu extends Menu {
 
-    private UserManager userManager = UserManager.getInstance();
-    private ShelfManager shelfManager = new ShelfManager();
-    private ReviewManager reviewManager = new ReviewManager();
+    private final UserManager userManager = UserManager.getInstance();
+    private final ShelfManager shelfManager = new ShelfManager();
+    private final ReviewManager reviewManager = new ReviewManager();
 
     public BookMenu(Scanner input) {
         super(input);

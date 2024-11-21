@@ -3,9 +3,9 @@ package src.menus;
 import java.util.Scanner;
 
 public class UserMenu extends Menu {
-    private BookSearchMenu bookSearchMenu  = new BookSearchMenu(input);
-    private RecommendationsMenu recommendations = new RecommendationsMenu(input);
-    private ProfileMenu profile = new ProfileMenu(input);
+    private final BookSearchMenu bookSearchMenu  = new BookSearchMenu(input);
+    private final RecommendationsMenu recommendations = new RecommendationsMenu(input);
+    private final ProfileMenu profile = new ProfileMenu(input);
 
     public UserMenu(Scanner input) {
         super(input);

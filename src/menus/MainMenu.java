@@ -2,17 +2,18 @@ package src.menus;
 
 import src.managers.UserManager;
 import src.models.User;
+
 import java.util.Scanner;
 
 public class MainMenu extends Menu {
-    private UserManager userManager = UserManager.getInstance();
+    private final UserManager userManager = UserManager.getInstance();
     private User loggedInUser;
-    private UserMenu userMenu= new UserMenu(input);
+    private final UserMenu userMenu = new UserMenu(input);
+    private final AdminMenu adminMenu = new AdminMenu(input);
 
     public MainMenu(Scanner input) {
         super(input);
     }
-
 
     @Override
     public void displayMenu() {
@@ -50,16 +51,19 @@ public class MainMenu extends Menu {
             loggedInUser = userManager.verifyCredentials(username, password);
 
             if (loggedInUser != null) {
-                System.out.println("\nLogged in successfully.\n");
-                userMenu.displayMenu();
+                System.out.println("\nLogged in successfully.");
+                if (loggedInUser.isAdmin()) {
+                    adminMenu.displayMenu();
+                } else {
+                    userMenu.displayMenu();
+                }
             } else {
-                System.out.println("\nInvalid username or password. Please try again.\n");
+                System.out.println("\nInvalid username or password. Please try again.");
             }
         } catch (Exception e) {
             System.out.println("Error occurred while logging in. Please try again.");
         }
     }
-
 
     private void signUp() {
         try {
@@ -72,7 +76,7 @@ public class MainMenu extends Menu {
             while (true) {
                 System.out.print(" Enter a username: ");
                 username = input.nextLine();
-                if (userManager.valid_username(username)) {
+                if (userManager.validUsername(username)) {
                     System.out.println("\nUsername already exists. Please choose another one.\n");
                 } else {
                     break;
@@ -89,8 +93,8 @@ public class MainMenu extends Menu {
                 }
             }
 
-            userManager.addUser(username, password);
-            System.out.println("\nAccount created successfully!\n");
+            userManager.addUser(username, password, false);
+            System.out.println("\nAccount created successfully!");
 
         } catch (Exception e) {
             System.out.println("An error occurred during sign up. Please try again.");

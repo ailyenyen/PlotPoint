@@ -7,7 +7,7 @@ import src.models.Book;
 import src.managers.BookManager;
 
 public class RecommendationsMenu extends Menu {
-    private BookManager bookManager = new BookManager();
+    private final BookManager bookManager = new BookManager();
 
     public RecommendationsMenu(Scanner input) {
         super(input);

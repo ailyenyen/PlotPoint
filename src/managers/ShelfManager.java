@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ShelfManager {
-    private DatabaseHelper dbHelper = new DatabaseHelper();
-    private UserManager userManager = UserManager.getInstance();
+    private final DatabaseHelper dbHelper = new DatabaseHelper();
+    private final UserManager userManager = UserManager.getInstance();
 
     public List<String> getUserShelves(int userId) {
         List<String> shelves = new ArrayList<>();
@@ -191,11 +191,12 @@ public class ShelfManager {
         FROM shelf_books
         JOIN shelves ON shelf_books.shelf_id = shelves.shelf_id
         JOIN book_tags ON shelf_books.book_id = book_tags.book_id
-        JOIN tags ON book_tags.tag_id = tags.tag_id
+        JOIN tags ON book_tags.tag_name = tags.tag_name
         WHERE shelves.shelf_name = 'Read' AND tags.tag_type = 'genre' AND shelves.user_id = ?
         GROUP BY tags.tag_name
         ORDER BY count DESC;
     """;
+
         try (Connection connection = dbHelper.connect();
              PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, userManager.getLoggedInUser().getUserId());
@@ -210,12 +211,13 @@ public class ShelfManager {
                 genreData.add(new String[]{rs.getString("tag_name"), String.valueOf(count)});
             }
 
+            // Output formatted genre data
             for (int i = 0; i < genreData.size(); i++) {
                 String tagName = genreData.get(i)[0];
                 int count = Integer.parseInt(genreData.get(i)[1]);
                 double percentage = (totalReads > 0) ? (count / (double) totalReads) * 100 : 0;
 
-                // Format "1 read" or "reads"
+                // Format output for read count
                 String readText = count == 1 ? "read" : "reads";
                 String genreLine = String.format("│ [%d] %-18s %3d %-8s %7.1f%% │",
                         (i + 1), tagName, count, readText, percentage);
@@ -231,6 +233,7 @@ public class ShelfManager {
         input.nextLine();
         input.nextLine();
     }
+
 
 
 
