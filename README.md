@@ -2,7 +2,7 @@
 
 # PlotPoint: Your Personal Book Tracker
 
-##<img src="https://github.com/user-attachments/assets/95bdd3c0-cd9a-407e-99cc-86de9b2606cb" alt="Logo Mini" width="100">  I. Project Overview
+## I. Project Overview
 **PlotPoint** is a book tracking application designed for book lovers to seamlessly manage their reading experience. With PlotPoint, users can:
 - Search for books and view detailed information.
 - Rate and review books they've read.
