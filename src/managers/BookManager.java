@@ -228,6 +228,36 @@ public class BookManager {
         }
     }
 
+    public void updateBookTagsInDatabase(int bookId, String tagType, List<String> tags) {
+        try (Connection conn = dbHelper.connect()) {
+            String deleteSql = """
+                DELETE bt
+                FROM book_tags bt
+                JOIN tags t ON bt.tag_name = t.tag_name
+                WHERE bt.book_id = ? AND t.tag_type = ?
+                """;
+            try (PreparedStatement deleteStmt = conn.prepareStatement(deleteSql)) {
+                deleteStmt.setInt(1, bookId);
+                deleteStmt.setString(2, tagType);
+                deleteStmt.executeUpdate();
+            }
+            String insertSql = "INSERT INTO book_tags (book_id, tag_name) VALUES (?, ?)";
+            try (PreparedStatement insertStmt = conn.prepareStatement(insertSql)) {
+                for (String tag : tags) {
+                    insertStmt.setInt(1, bookId);
+                    insertStmt.setString(2, tag);
+                    insertStmt.addBatch();
+                }
+                insertStmt.executeBatch();
+            }
+
+            System.out.println(tagType.substring(0, 1).toUpperCase() + tagType.substring(1) + "s updated successfully!");
+        } catch (SQLException e) {
+            System.out.println("Error updating " + tagType + "s: " + e.getMessage());
+        }
+    }
+
+
     public void deleteBookFromDatabase(int bookId) {
         try (Connection conn = dbHelper.connect()) {
             String sql = "DELETE FROM books WHERE book_id = ?";

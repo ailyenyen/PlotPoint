@@ -1,23 +1,17 @@
 package src.menus;
 
 import src.managers.BookManager;
-import src.managers.DatabaseHelper;
 import src.models.Book;
-import src.models.User;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 public class AdminMenu extends Menu {
     private final BookManager bookManager = new BookManager();
     private final BookMenu bookMenu = new BookMenu(input);
+    private final BookSearchMenu bookSearchMenu  = new BookSearchMenu(input);
 
     public AdminMenu(Scanner input) {
         super(input);
@@ -166,20 +160,31 @@ public class AdminMenu extends Menu {
 
     private List<String> selectTags(String type) {
         List<String> availableTags = bookManager.getTagsByType(type);
+        displayTags(availableTags, type);
+        return selectTagsFromList(availableTags, type);
+    }
+
+    private void displayTags(List<String> tags, String type) {
+        if (tags.isEmpty()) {
+            System.out.println("No " + type + "s found in the system.");
+            return;
+        }
+
+        displayTitle("Available " + type + "s:");
+        for (int i = 0; i < tags.size(); i++) {
+            System.out.printf("│ %-44s │\n", "[" + (i + 1) + "] " + tags.get(i));
+        }
+        System.out.println("└──────────────────────────────────────────────┘");
+    }
+
+    private List<String> selectTagsFromList(List<String> availableTags, String type) {
         List<String> selectedTags = new ArrayList<>();
+        String[] selectedIndexes;
 
         if (availableTags.isEmpty()) {
             System.out.println("No " + type + "s found in the system.");
             return selectedTags;
         }
-
-        displayTitle( "Available " + type + "s:");
-        for (int i = 0; i < availableTags.size(); i++) {
-            System.out.printf("│ %-44s │\n", "[" + (i + 1) + "] " + availableTags.get(i));
-        }
-        System.out.println("└──────────────────────────────────────────────┘");
-
-        String[] selectedIndexes;
 
         while (true) {
             System.out.print("\nEnter the numbers of the " + type + "s you want to select (comma-separated): ");
@@ -207,16 +212,9 @@ public class AdminMenu extends Menu {
             }
         }
 
-
-        try {
-            for (String index : selectedIndexes) {
-                int tagIndex = Integer.parseInt(index) - 1;
-                if (tagIndex >= 0 && tagIndex < availableTags.size()) {
-                    selectedTags.add(availableTags.get(tagIndex));
-                }
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid input. No " + type + "s were selected.");
+        for (String index : selectedIndexes) {
+            int tagIndex = Integer.parseInt(index) - 1;
+            selectedTags.add(availableTags.get(tagIndex));
         }
 
         return selectedTags;
@@ -260,7 +258,6 @@ public class AdminMenu extends Menu {
         return choice == 0 ? null : books.get(choice - 1);
     }
 
-
     private void editBookDetails(int bookId) {
         boolean exit = false;
         while (!exit) {
@@ -271,11 +268,13 @@ public class AdminMenu extends Menu {
             System.out.println("│ [3] Publication Date                         │");
             System.out.println("│ [4] Page Count                               │");
             System.out.println("│ [5] Synopsis                                 │");
+            System.out.println("│ [6] Genres                                   │");
+            System.out.println("│ [7] Moods                                    │");
             System.out.println("├──────────────────────────────────────────────┤");
             System.out.println("│ [0] Exit                                     │");
             System.out.println("└──────────────────────────────────────────────┘");
 
-            int choice = getUserChoice("Enter your choice: ", 5);
+            int choice = getUserChoice("Enter your choice: ", 7);
             input.nextLine();
 
             if (choice == 0) {
@@ -289,28 +288,40 @@ public class AdminMenu extends Menu {
                 case 1 -> {
                     System.out.print("Enter new title: ");
                     newValue = input.nextLine();
+                    bookManager.updateBookInDatabase(bookId, choice, newValue);
                 }
                 case 2 -> {
                     System.out.print("Enter new author: ");
                     newValue = input.nextLine();
+                    bookManager.updateBookInDatabase(bookId, choice, newValue);
                 }
                 case 3 -> {
                     newValue = getValidDate("Enter new publication date (YYYY-MM-DD): ");
+                    bookManager.updateBookInDatabase(bookId, choice, newValue);
                 }
                 case 4 -> {
                     newValue = String.valueOf(getPageCount("Enter new page count: "));
+                    bookManager.updateBookInDatabase(bookId, choice, newValue);
                 }
                 case 5 -> {
                     System.out.print("Enter new synopsis: ");
                     newValue = input.nextLine();
+                    bookManager.updateBookInDatabase(bookId, choice, newValue);
+                }
+                case 6 -> {
+                    List<String> genres = selectTags("genre");
+                    bookManager.updateBookTagsInDatabase(bookId, "genre", genres);
+                }
+                case 7 -> {
+                    List<String> moods = selectTags("mood");
+                    bookManager.updateBookTagsInDatabase(bookId, "mood", moods);
                 }
                 default -> {
                     System.out.println("Invalid choice. Please try again.");
-                    continue;
                 }
             }
-            bookManager.updateBookInDatabase(bookId, choice, newValue);
         }
     }
+
 
 }
