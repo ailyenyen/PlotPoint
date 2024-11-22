@@ -1,8 +1,8 @@
 ![PLotPoint Logo](https://github.com/user-attachments/assets/5c569274-d169-4ba8-bfd4-3e2f2570da11)
 
-# PlotPoint: Your Personal Book Tracker
+## PlotPoint: Your Personal Book Tracker
 
-## I. Project Overview
+### I. Project Overview
 **PlotPoint** is a book tracking application designed for book lovers to seamlessly manage their reading experience. With PlotPoint, users can:
 - Search for books and view detailed information.
 - Rate and review books they've read.
@@ -14,7 +14,7 @@ This project emphasizes user-friendly design and robust functionality to make re
 
 ---
 
-## II. Object-Oriented Programming (OOP) Principles Applied
+### II. Object-Oriented Programming (OOP) Principles Applied
 PlotPoint is built with a strong foundation in OOP principles, ensuring maintainability and scalability:
 - **Encapsulation**:  
   All core functionalities, such as managing books, users, and reviews, are encapsulated within dedicated classes like `BookManager`, `UserManager`, and `ReviewManager`, ensuring modular code organization.
@@ -27,12 +27,12 @@ PlotPoint is built with a strong foundation in OOP principles, ensuring maintain
 
 ---
 
-## III. Chosen SDG: Quality Education (Goal 4)
+### III. Chosen SDG: Quality Education (Goal 4)
 PlotPoint aligns with **Sustainable Development Goal 4: Quality Education**, promoting lifelong learning through reading. By making it easier to track and discover books, PlotPoint encourages users to broaden their knowledge and engage with diverse literature. Features like personalized recommendations and reading statistics inspire users to set reading goals, fostering a culture of continuous learning and self-improvement.
 
 ---
 
-## IV. Instructions for Running the Program
+### IV. Instructions for Running the Program
 To run PlotPoint, follow these steps:
 
 1. **Prerequisites**:
