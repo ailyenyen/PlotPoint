@@ -3,7 +3,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DatabaseHelper {
-    private final String DB_URL = "jdbc:mysql://127.0.0.1:3306/book_tracker";
+    private final String DB_URL = "jdbc:mysql://127.0.0.1:3306/plot_point";
     private final String DB_USER = "root";
     private final String DB_PASSWORD = "Alohamora7";
 
