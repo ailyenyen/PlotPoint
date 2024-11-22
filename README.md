@@ -1,6 +1,7 @@
 ![PLotPoint Logo](https://github.com/user-attachments/assets/5c569274-d169-4ba8-bfd4-3e2f2570da11)
 
 # PlotPoint: Your Personal Book Tracker
+<img src="https://github.com/user-attachments/assets/95bdd3c0-cd9a-407e-99cc-86de9b2606cb" alt="Logo Mini" width="200">
 
 ## I. Project Overview
 **PlotPoint** is a book tracking application designed for book lovers to seamlessly manage their reading experience. With PlotPoint, users can:
