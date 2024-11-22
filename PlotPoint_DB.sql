@@ -1,6 +1,6 @@
-CREATE DATABASE book_tracker;
+CREATE DATABASE plot_point;
 
-USE book_tracker;
+USE plot_point;
 
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
