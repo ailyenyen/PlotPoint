@@ -1,5 +1,4 @@
 package src.menus;
-
 import src.managers.*;
 import src.models.Book;
 import src.models.User;
@@ -23,7 +22,7 @@ public class ProfileMenu extends Menu {
             System.out.println("No user is logged in.");
             return;
         }
-        //
+
         boolean exit = false;
         while (!exit) {
             displayTitle("Welcome to your PlotPoint Profile!");

@@ -1,11 +1,9 @@
 package src.menus;
-
 import src.managers.ReviewManager;
 import src.managers.ShelfManager;
 import src.managers.UserManager;
 import src.models.Book;
 import src.models.User;
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -73,7 +71,6 @@ public class BookMenu extends Menu {
                 System.out.println("│ " + shelfDisplay + " │");
             }
         }
-
         System.out.println("├──────────────────────────────────────────────┤");
         System.out.println("│ [0] Exit                                     │");
         System.out.println("└──────────────────────────────────────────────┘");

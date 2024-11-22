@@ -11,7 +11,6 @@ import java.time.format.DateTimeParseException;
 public class AdminMenu extends Menu {
     private final BookManager bookManager = new BookManager();
     private final BookMenu bookMenu = new BookMenu(input);
-    private final BookSearchMenu bookSearchMenu  = new BookSearchMenu(input);
 
     public AdminMenu(Scanner input) {
         super(input);
@@ -85,6 +84,44 @@ public class AdminMenu extends Menu {
         }
     }
 
+    private Book searchBookByTitle() {
+        input.nextLine();
+        System.out.print("Enter book title: ");
+        String title = input.nextLine();
+
+        List<Book> books = bookManager.searchByTitle(title);
+
+        displayTitle("Search Results");
+        if (books == null || books.isEmpty()) {
+            System.out.println("│                No books found                │");
+            System.out.println("└──────────────────────────────────────────────┘\n");
+            System.out.print("Press enter to return.");
+            input.nextLine();
+            return  null;
+        }
+
+        for (int i = 0; i < books.size(); i++) {
+            String title1 = books.get(i).getTitle();
+            String author = books.get(i).getAuthor();
+            String rating = books.get(i).getOverallRating();
+
+            String bookInfo = "[" + (i + 1) + "] " + title1 + " by " + author;
+            if (bookInfo.length() > 38) {
+                bookInfo = bookInfo.substring(0, 35) + "...";
+            }
+
+            System.out.printf("│ %-44s │\n", bookInfo);
+            System.out.printf("│    Average rating: %-25s │\n", rating);
+            System.out.println("├──────────────────────────────────────────────┤");
+        }
+        System.out.println("│ [0] Exit                                     │");
+        System.out.println("└──────────────────────────────────────────────┘");
+
+        int choice = getUserChoice("\nSelect a book: ", books.size());
+
+        return choice == 0 ? null : books.get(choice - 1);
+    }
+
     private void viewBookDetails(Book book){
         boolean exit = false;
 
@@ -105,6 +142,70 @@ public class AdminMenu extends Menu {
         }
     }
 
+    private void editBookDetails(int bookId) {
+        boolean exit = false;
+        while (!exit) {
+            displayTitle("Edit Book");
+            System.out.println("│ What detail would you like to edit?          │");
+            System.out.println("│ [1] Title                                    │");
+            System.out.println("│ [2] Author                                   │");
+            System.out.println("│ [3] Publication Date                         │");
+            System.out.println("│ [4] Page Count                               │");
+            System.out.println("│ [5] Synopsis                                 │");
+            System.out.println("│ [6] Genres                                   │");
+            System.out.println("│ [7] Moods                                    │");
+            System.out.println("├──────────────────────────────────────────────┤");
+            System.out.println("│ [0] Exit                                     │");
+            System.out.println("└──────────────────────────────────────────────┘");
+
+            int choice = getUserChoice("Enter your choice: ", 7);
+            input.nextLine();
+
+            if (choice == 0) {
+                System.out.println("Exiting edit book details...");
+                exit = true;
+                continue;
+            }
+
+            String newValue;
+            switch (choice) {
+                case 1 -> {
+                    System.out.print("Enter new title: ");
+                    newValue = input.nextLine();
+                    bookManager.updateBookInDatabase(bookId, choice, newValue);
+                }
+                case 2 -> {
+                    System.out.print("Enter new author: ");
+                    newValue = input.nextLine();
+                    bookManager.updateBookInDatabase(bookId, choice, newValue);
+                }
+                case 3 -> {
+                    newValue = getValidDate("Enter new publication date (YYYY-MM-DD): ");
+                    bookManager.updateBookInDatabase(bookId, choice, newValue);
+                }
+                case 4 -> {
+                    newValue = String.valueOf(getPageCount("Enter new page count: "));
+                    bookManager.updateBookInDatabase(bookId, choice, newValue);
+                }
+                case 5 -> {
+                    System.out.print("Enter new synopsis: ");
+                    newValue = input.nextLine();
+                    bookManager.updateBookInDatabase(bookId, choice, newValue);
+                }
+                case 6 -> {
+                    List<String> genres = selectTags("genre");
+                    bookManager.updateBookTagsInDatabase(bookId, "genre", genres);
+                }
+                case 7 -> {
+                    List<String> moods = selectTags("mood");
+                    bookManager.updateBookTagsInDatabase(bookId, "mood", moods);
+                }
+                default -> {
+                    System.out.println("Invalid choice. Please try again.");
+                }
+            }
+        }
+    }
 
     private String getValidDate(String prompt){
         String publicationDate = "";
@@ -202,7 +303,6 @@ public class AdminMenu extends Menu {
                         break;
                     }
                 }
-
                 if (allValid) {
                     break;
                 }
@@ -219,109 +319,5 @@ public class AdminMenu extends Menu {
 
         return selectedTags;
     }
-
-    private Book searchBookByTitle() {
-        input.nextLine();
-        System.out.print("Enter book title: ");
-        String title = input.nextLine();
-
-        List<Book> books = bookManager.searchByTitle(title);
-
-        displayTitle("Search Results");
-        if (books == null || books.isEmpty()) {
-            System.out.println("│                No books found                │");
-            System.out.println("└──────────────────────────────────────────────┘\n");
-            System.out.print("Press enter to return.");
-            input.nextLine();
-            return  null;
-        }
-
-        for (int i = 0; i < books.size(); i++) {
-            String title1 = books.get(i).getTitle();
-            String author = books.get(i).getAuthor();
-            String rating = books.get(i).getOverallRating();
-
-            String bookInfo = "[" + (i + 1) + "] " + title1 + " by " + author;
-            if (bookInfo.length() > 38) {
-                bookInfo = bookInfo.substring(0, 35) + "...";
-            }
-
-            System.out.printf("│ %-44s │\n", bookInfo);
-            System.out.printf("│    Average rating: %-25s │\n", rating);
-            System.out.println("├──────────────────────────────────────────────┤");
-        }
-        System.out.println("│ [0] Exit                                     │");
-        System.out.println("└──────────────────────────────────────────────┘");
-
-        int choice = getUserChoice("\nSelect a book: ", books.size());
-
-        return choice == 0 ? null : books.get(choice - 1);
-    }
-
-    private void editBookDetails(int bookId) {
-        boolean exit = false;
-        while (!exit) {
-            displayTitle("Edit Book");
-            System.out.println("│ What detail would you like to edit?          │");
-            System.out.println("│ [1] Title                                    │");
-            System.out.println("│ [2] Author                                   │");
-            System.out.println("│ [3] Publication Date                         │");
-            System.out.println("│ [4] Page Count                               │");
-            System.out.println("│ [5] Synopsis                                 │");
-            System.out.println("│ [6] Genres                                   │");
-            System.out.println("│ [7] Moods                                    │");
-            System.out.println("├──────────────────────────────────────────────┤");
-            System.out.println("│ [0] Exit                                     │");
-            System.out.println("└──────────────────────────────────────────────┘");
-
-            int choice = getUserChoice("Enter your choice: ", 7);
-            input.nextLine();
-
-            if (choice == 0) {
-                System.out.println("Exiting edit book details...");
-                exit = true;
-                continue;
-            }
-
-            String newValue;
-            switch (choice) {
-                case 1 -> {
-                    System.out.print("Enter new title: ");
-                    newValue = input.nextLine();
-                    bookManager.updateBookInDatabase(bookId, choice, newValue);
-                }
-                case 2 -> {
-                    System.out.print("Enter new author: ");
-                    newValue = input.nextLine();
-                    bookManager.updateBookInDatabase(bookId, choice, newValue);
-                }
-                case 3 -> {
-                    newValue = getValidDate("Enter new publication date (YYYY-MM-DD): ");
-                    bookManager.updateBookInDatabase(bookId, choice, newValue);
-                }
-                case 4 -> {
-                    newValue = String.valueOf(getPageCount("Enter new page count: "));
-                    bookManager.updateBookInDatabase(bookId, choice, newValue);
-                }
-                case 5 -> {
-                    System.out.print("Enter new synopsis: ");
-                    newValue = input.nextLine();
-                    bookManager.updateBookInDatabase(bookId, choice, newValue);
-                }
-                case 6 -> {
-                    List<String> genres = selectTags("genre");
-                    bookManager.updateBookTagsInDatabase(bookId, "genre", genres);
-                }
-                case 7 -> {
-                    List<String> moods = selectTags("mood");
-                    bookManager.updateBookTagsInDatabase(bookId, "mood", moods);
-                }
-                default -> {
-                    System.out.println("Invalid choice. Please try again.");
-                }
-            }
-        }
-    }
-
 
 }

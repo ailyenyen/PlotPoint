@@ -1,7 +1,5 @@
 package src.managers;
-
 import src.models.Book;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -202,7 +200,6 @@ public class ShelfManager {
             stmt.setInt(1, userManager.getLoggedInUser().getUserId());
             ResultSet rs = stmt.executeQuery();
 
-            // Calculate total reads
             int totalReads = 0;
             List<String[]> genreData = new ArrayList<>();
             while (rs.next()) {
@@ -211,13 +208,11 @@ public class ShelfManager {
                 genreData.add(new String[]{rs.getString("tag_name"), String.valueOf(count)});
             }
 
-            // Output formatted genre data
             for (int i = 0; i < genreData.size(); i++) {
                 String tagName = genreData.get(i)[0];
                 int count = Integer.parseInt(genreData.get(i)[1]);
                 double percentage = (totalReads > 0) ? (count / (double) totalReads) * 100 : 0;
 
-                // Format output for read count
                 String readText = count == 1 ? "read" : "reads";
                 String genreLine = String.format("│ [%d] %-18s %3d %-8s %7.1f%% │",
                         (i + 1), tagName, count, readText, percentage);
@@ -233,9 +228,6 @@ public class ShelfManager {
         input.nextLine();
         input.nextLine();
     }
-
-
-
 
     public void showBooksReadPerMonth(Scanner input) {
         String query = """
@@ -255,8 +247,6 @@ public class ShelfManager {
                 String month = rs.getString("month");
                 int count = rs.getInt("count");
                 String bookText = count == 1 ? "book" : "books";
-
-                // Print each month entry formatted to fit within the box
                 System.out.printf("│  %-10s -   %-3d %-5s                    │\n", month, count, bookText);
             }
 
@@ -270,7 +260,6 @@ public class ShelfManager {
         input.nextLine();
         input.nextLine();
     }
-
 
     public void showPagesReadPerMonth(Scanner input) {
         String query = """
@@ -290,8 +279,6 @@ public class ShelfManager {
             while (rs.next()) {
                 String month = rs.getString("month");
                 int pages = rs.getInt("pages");
-
-                // Print each month entry formatted to fit within the box
                 System.out.printf("│ %-10s -  %-4d pages                     │\n", month, pages);
             }
 
@@ -323,11 +310,8 @@ public class ShelfManager {
             while (rs.next()) {
                 String month = rs.getString("month");
                 double avgRating = rs.getDouble("avg_rating");
-
-                // Print each month entry formatted to fit within the box
                 System.out.printf("│ %-10s -   %-4.2f rating                   │\n", month, avgRating);
             }
-
             System.out.println("└──────────────────────────────────────────────┘");
 
         } catch (SQLException e) {

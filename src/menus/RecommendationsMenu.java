@@ -1,8 +1,6 @@
 package src.menus;
-
 import java.util.List;
 import java.util.Scanner;
-
 import src.models.Book;
 import src.managers.BookManager;
 
@@ -48,7 +46,7 @@ public class RecommendationsMenu extends Menu {
 
         for (int i = 0; i < tags.size(); i++) {
             String option = String.format("[%d] %-40s", i + 1, tags.get(i));
-            System.out.println("│ " + option.substring(0, 44) + " │");  // truncate if too long
+            System.out.println("│ " + option.substring(0, 44) + " │");
         }
         System.out.println("├──────────────────────────────────────────────┤");
         System.out.println("│ [0] Exit                                     │");

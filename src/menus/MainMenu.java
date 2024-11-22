@@ -1,8 +1,6 @@
 package src.menus;
-
 import src.managers.UserManager;
 import src.models.User;
-
 import java.util.Scanner;
 
 public class MainMenu extends Menu {
@@ -42,7 +40,7 @@ public class MainMenu extends Menu {
             System.out.println("│                  Log - In                    │");
             System.out.println("└──────────────────────────────────────────────┘");
             System.out.print(" Enter your username: ");
-            input.nextLine(); // Consume any leftover newline
+            input.nextLine();
             String username = input.nextLine();
 
             System.out.print(" Enter your password: ");

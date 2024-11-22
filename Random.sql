@@ -126,8 +126,6 @@ VALUES
 ('A Court of Thorns and Roses', 'Sarah J. Maas', '2015-05-05', 416, 'When a young huntress kills a wolf, she’s taken to a magical kingdom as punishment. There, she discovers love and danger in equal measure. A court of thorns and roses is a retelling of Beauty and the Beast with a dark twist.'),
 ('We Were Liars', 'E. Lockhart', '2014-05-13', 242, 'On a private island, a wealthy family hides dark secrets. A young girl’s search for the truth uncovers betrayal and heartbreak. We were liars is a gripping tale of privilege, memory, and the lies we tell ourselves.');
 
-
--- Inserting sample tags for genres
 INSERT INTO tags (tag_name, tag_type)
 VALUES
 ('Fantasy', 'genre'),

@@ -1,10 +1,8 @@
 package src.menus;
-
 import java.util.List;
 import java.util.Scanner;
 import src.managers.*;
 import src.models.Book;
-import src.models.User;
 
 public class BookSearchMenu extends Menu {
     private final BookManager bookManager = new BookManager();

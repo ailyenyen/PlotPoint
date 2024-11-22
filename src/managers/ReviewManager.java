@@ -1,14 +1,10 @@
 package src.managers;
-
-import src.models.Book;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class ReviewManager {
     private final DatabaseHelper dbHelper = new DatabaseHelper();
@@ -31,7 +27,6 @@ public class ReviewManager {
         return false;
     }
 
-
     public void addRatingAndReview(int userId, int bookId, int rating, String review) {
         String query = "INSERT INTO reviews (user_id, book_id, rating, review_text) VALUES (?, ?, ?, ?) " +
                 "ON DUPLICATE KEY UPDATE rating = ?, review_text = ?";
@@ -43,7 +38,7 @@ public class ReviewManager {
             preparedStatement.setInt(2, bookId);
             preparedStatement.setInt(3, rating);
             preparedStatement.setString(4, review);
-            preparedStatement.setInt(5, rating);  // For update on duplicate key
+            preparedStatement.setInt(5, rating);
             preparedStatement.setString(6, review);
 
             preparedStatement.executeUpdate();
@@ -69,13 +64,11 @@ public class ReviewManager {
                 int rating = resultSet.getInt("rating");
                 String reviewText = resultSet.getString("review_text");
 
-                // Create the formatted review box
                 StringBuilder sb = new StringBuilder();
                 sb.append("┌──────────────────────────────────────────────┐\n");
                 sb.append(String.format("│ %-44s │\n", "Username: " + username));
                 sb.append("├──────────────────────────────────────────────┤\n");
 
-                // Format the review with both rating and review text side-by-side
                 int lineWidth = 44;
                 String[] words = reviewText.split(" ");
                 StringBuilder line = new StringBuilder("│ Rating & Review: " + rating + "/5 - ");
@@ -91,7 +84,6 @@ public class ReviewManager {
                 sb.append(String.format("%-47s│\n", line.toString()));
                 sb.append("└──────────────────────────────────────────────┘");
 
-                // Add the formatted review to the list
                 reviews.add(sb.toString());
             }
         } catch (Exception e) {

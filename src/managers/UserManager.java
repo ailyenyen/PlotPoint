@@ -1,12 +1,8 @@
 package src.managers;
-
 import src.models.User;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class UserManager {
 

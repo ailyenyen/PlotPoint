@@ -1,5 +1,4 @@
 package src.menus;
-
 import java.util.Scanner;
 
 public class UserMenu extends Menu {
