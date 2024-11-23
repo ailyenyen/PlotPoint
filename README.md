@@ -40,33 +40,4 @@ PlotPoint is built with a strong foundation in OOP principles, ensuring maintain
 ---
 
 ## IV. Instructions for Running the Program
-To run PlotPoint, follow these steps:
-
-1. **Prerequisites**:
-   - Install Java Development Kit (JDK) 11 or higher.
-   - Set up MySQL and create the `book_tracker` database using the provided schema.
-
-2. **Setup**:
-   - Clone this repository:
-     ```bash
-     git clone https://github.com/yourusername/PlotPoint.git
-     cd PlotPoint
-     ```
-   - Update the `DatabaseHelper` class with your MySQL credentials.
-
-3. **Compile and Run**:
-   - Compile the program:
-     ```bash
-     javac -d bin src/**/*.java
-     ```
-   - Run the program:
-     ```bash
-     java -cp bin Main
-     ```
-
-4. **Enjoy**:
-   - Log in or create an account to start tracking your books.
-   - Explore features like searching for books, adding to shelves, and viewing recommendations.
-
----
 
