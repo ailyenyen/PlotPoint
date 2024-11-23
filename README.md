@@ -1,38 +1,45 @@
-![PLotPoint Logo](https://github.com/user-attachments/assets/5c569274-d169-4ba8-bfd4-3e2f2570da11)
+<img src="https://github.com/user-attachments/assets/0efedd91-0b49-463a-b270-80ef0a325106" width="950"/>
 
-## PlotPoint: Your Personal Book Tracker
 
-### I. Project Overview
-**PlotPoint** is a book tracking application designed for book lovers to seamlessly manage their reading experience. With PlotPoint, users can:
-- Search for books and view detailed information.
-- Rate and review books they've read.
-- Organize books into personal shelves.
-- Analyze their reading habits with insightful statistics.
-- Receive personalized book recommendations based on genres or moods.
 
-This project emphasizes user-friendly design and robust functionality to make reading more engaging and organized.
+## I. Project Overview
+
+- **PlotPoint** is a comprehensive book tracking application tailored for book lovers to enhance their reading experience. Users can securely sign up and log in to access personalized features such as book search, shelving, and reading analytics. The platform allows users to search for books by title or author and view detailed information, including average ratings and community reviews, offering valuable insights into a book's quality and appeal.
+
+- PlotPoint's shelving system helps users organize books into default categories like “Want to Read,” “Reading,” and “Read,” or create custom shelves to suit their preferences. Users can rate books, write detailed reviews, and explore personalized recommendations based on genres or moods. Additionally, the application provides insightful reading statistics, such as books read per month and total pages read, empowering users to set goals and track their progress. By combining these features, PlotPoint fosters a seamless and engaging reading experience for all.
 
 ---
 
-### II. Object-Oriented Programming (OOP) Principles Applied
+## II. Object-Oriented Programming (OOP) Principles Applied
 PlotPoint is built with a strong foundation in OOP principles, ensuring maintainability and scalability:
 - **Encapsulation**:  
-  All core functionalities, such as managing books, users, and reviews, are encapsulated within dedicated classes like `BookManager`, `UserManager`, and `ReviewManager`, ensuring modular code organization.
+  - All core functionalities, such as managing books, users, and reviews, are encapsulated within dedicated classes like `BookManager`, `UserManager`, and `ReviewManager`, ensuring modular code organization.
+
 - **Inheritance**:  
-  Shared behaviors and attributes of entities like `Book` and specialized categories (e.g., genres or moods) are structured using inheritance.
+  - PlotPoint leverages inheritance to streamline shared functionality and attributes across related components. For example:
+    - The `Menu` class serves as a base class, encapsulating common menu behaviors such as displaying options and handling user input.
+    - Specialized menus like `UserMenu`, `BookSearchMenu`, and `RecommendationsMenu` inherit from `Menu`, reusing core functionalities while extending or overriding them to provide specific features.
+      
 - **Polymorphism**:  
-  Methods like `searchBooks` are designed to handle searching by title, author, or genre, providing flexible user inputs.
-- **Abstraction**:  
-  Complex database operations are abstracted within helper classes, like `DatabaseHelper`, to simplify interaction with MySQL.
+  - PlotPoint demonstrates polymorphism by enabling flexible and dynamic behavior across different classes and methods:
+      - Methods like `searchBooks` are designed to accept various input types, such as title, author, or genre, while providing consistent functionality regardless of the search parameter. This ensures users can interact with the system intuitively without requiring separate methods for each case.
+      - The `Menu` class and its subclasses (`UserMenu`, `BookSearchMenu`, etc.) exhibit polymorphism through the `displayMenu()` method. Each subclass provides its unique implementation of `displayMenu()`, allowing diverse menu behaviors while adhering to a unified interface. For example, `displayMenu()` in `BookSearchMenu` handles search operations, whereas `displayMenu()` in `UserMenu` presents user-specific options.
+
+- **Abstraction**:
+    - Abstraction is key to managing the complexity of PlotPoint by focusing on essential details while hiding implementation specifics:
+      - The `Menu` class is defined as abstract, serving as a blueprint for other menu types. It provides common methods like `displayTitle()` and `getUserChoice()` while leaving `displayMenu()` as an abstract method. This forces subclasses to implement their specific behavior, ensuring clarity and separation of concerns.  
+  
+---
+
+## III. Chosen SDG: Quality Education (Goal 4)
+
+- PlotPoint aligns with **Sustainable Development Goal 4: Quality Education** by promoting lifelong learning and fostering a culture of reading. By providing features such as personalized recommendations and reading statistics, the platform encourages users to explore diverse genres, set reading goals, and engage with literature as a means of personal growth. These tools inspire users to continuously expand their knowledge and improve their skills through the transformative power of books.
+
+- Additionally, PlotPoint makes discovering and organizing educational content easy and accessible. Features like the shelving system enable users to categorize books into "Want to Read," "Read," or custom shelves, encouraging structured reading habits. By connecting readers to diverse perspectives and ideas, PlotPoint contributes to a more informed and empathetic community, embodying the essence of lifelong learning promoted by SDG 4.
 
 ---
 
-### III. Chosen SDG: Quality Education (Goal 4)
-PlotPoint aligns with **Sustainable Development Goal 4: Quality Education**, promoting lifelong learning through reading. By making it easier to track and discover books, PlotPoint encourages users to broaden their knowledge and engage with diverse literature. Features like personalized recommendations and reading statistics inspire users to set reading goals, fostering a culture of continuous learning and self-improvement.
-
----
-
-### IV. Instructions for Running the Program
+## IV. Instructions for Running the Program
 To run PlotPoint, follow these steps:
 
 1. **Prerequisites**:
