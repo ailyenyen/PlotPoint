@@ -6,7 +6,7 @@
 
 - **PlotPoint** is a comprehensive book tracking application tailored for book lovers to enhance their reading experience. Users can securely sign up and log in to access personalized features such as book search, shelving, and reading analytics. The platform allows users to search for books by title or author and view detailed information, including average ratings and community reviews, offering valuable insights into a book's quality and appeal.
 
-- PlotPoint's shelving system helps users organize books into default categories like “Want to Read,” “Reading,” and “Read,” or create custom shelves to suit their preferences. Users can rate books, write detailed reviews, and explore personalized recommendations based on genres or moods. Additionally, the application provides insightful reading statistics, such as books read per month and total pages read, empowering users to set goals and track their progress. By combining these features, PlotPoint fosters a seamless and engaging reading experience for all.
+- PlotPoint's shelving system helps users organize books into default categories like “Want to Read,” “Reading,” and “Read”. Users can rate books, write detailed reviews, and explore personalized recommendations based on genres or moods. Additionally, the application provides insightful reading statistics, such as books read per month and total pages read, empowering users to set goals and track their progress. By combining these features, PlotPoint fosters a seamless and engaging reading experience for all.
 
 ---
 
