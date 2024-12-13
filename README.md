@@ -3,7 +3,7 @@
 
 
 
-## I. Project Overview
+## ✒️Project Overview
 
 - **PlotPoint** is a comprehensive book tracking application tailored for book lovers to enhance their reading experience. Users can securely sign up and log in to access personalized features such as book search, shelving, and reading analytics. The platform allows users to search for books by title or author and view detailed information, including average ratings and community reviews, offering valuable insights into a book's quality and appeal.
 
@@ -11,7 +11,7 @@
 
 ---
 
-## II. Object-Oriented Programming (OOP) Principles Applied
+## ✒️Object-Oriented Programming (OOP) Principles Applied
 PlotPoint is built with a strong foundation in OOP principles, ensuring maintainability and scalability:
 - **Encapsulation**:  
   - All core functionalities, such as managing books, users, and reviews, are encapsulated within dedicated classes like `BookManager`, `UserManager`, and `ReviewManager`, ensuring modular code organization.
@@ -32,7 +32,7 @@ PlotPoint is built with a strong foundation in OOP principles, ensuring maintain
   
 ---
 
-## III. Chosen SDG: Quality Education (Goal 4)
+## ✒️Chosen SDG: Quality Education (Goal 4)
 
 - PlotPoint aligns with **Sustainable Development Goal 4: Quality Education** by promoting lifelong learning and fostering a culture of reading. By providing features such as personalized recommendations and reading statistics, the platform encourages users to explore diverse genres, set reading goals, and engage with literature as a means of personal growth. These tools inspire users to continuously expand their knowledge and improve their skills through the transformative power of books.
 
@@ -40,7 +40,7 @@ PlotPoint is built with a strong foundation in OOP principles, ensuring maintain
 
 ---
 
-## IV. Instructions for Running the Program
+## ✒️Instructions for Running the Program
 - **User LogIn or SignUp**
   - Upon launching the program, you will be prompted to log in or sign up.
   - **Log In**: If you already have an account, enter your credentials to access the program.
@@ -58,3 +58,11 @@ PlotPoint is built with a strong foundation in OOP principles, ensuring maintain
   - **Delete a book**: Remove a book from the catalog.
   - **Edit a book**: Change specific book details.
   - **Search a book**: Look up a book in the catalog.
+
+## ✒️Authors and Acknowledgements
+- **Author**
+    - Mallen, Jan Mayen D.
+    - 23-06458
+- **Course Facilitator**
+    - Ms. Fatima Marie P. Agdon, MSCS
+    - CS 211 - Object-oriented Programming
