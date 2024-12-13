@@ -1,4 +1,5 @@
-<img src="https://github.com/user-attachments/assets/0efedd91-0b49-463a-b270-80ef0a325106" width="950"/>
+
+![PLotPoint Logo](https://github.com/user-attachments/assets/8cb6932e-145a-4bbd-a4de-3cab7127c2a2)
 
 
 
