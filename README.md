@@ -41,4 +41,20 @@ PlotPoint is built with a strong foundation in OOP principles, ensuring maintain
 ---
 
 ## IV. Instructions for Running the Program
+- **User LogIn or SignUp**
+  - Upon launching the program, you will be prompted to log in or sign up.
+  - Log In: If you already have an account, enter your credentials to access the program.
+  - Sign Up: New users can create an account by providing a username and password.
 
+- **Main Menu**
+  - After logging in, you will be directed to the main menu, where you can select from the following features:
+  - Book Search: Find books by title or author.
+  - Recommendations: Get book suggestions based on your preferences.
+  - User profile: View account details and shelves.
+
+- **Admin Menu**
+  - Log in using admin credentials to access the admin menu.
+  - Add a book: Add a book in to the catalog.
+  - Delete a book: Remove a book from the catalog.
+  - Edit a book: Change specific book details.
+  - Search a book: Look up a book in the catalog.
