@@ -58,10 +58,13 @@ PlotPoint is built with a strong foundation in OOP principles, ensuring maintain
   - **Edit a book**: Change specific book details.
   - **Search a book**: Look up a book in the catalog.
 
-## ✒️Authors and Acknowledgements
-- **Author**
-    - Mallen, Jan Mayen D.
-    - 23-06458
-- **Course Facilitator**
-    - Ms. Fatima Marie P. Agdon, MSCS
-    - CS 211 - Object-oriented Programming
+## ✒️Contributors
+  | Name | Role | E-mail |
+  | --- | --- | --- |
+  | Jan Mayen D. Mallen | Developer | mallenjanmayen@gmail.com |
+
+## ✒️Course 
+  | Course | Course Facilitator |
+  | --- | --- |
+  | CS 211: Object Oriented Programming | Ms. Fatima Marie P. Agdon |
+  |  IT 211: Database Management System | Mr. Owen Patrick Falculan | 
