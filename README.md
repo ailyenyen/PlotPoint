@@ -23,7 +23,6 @@ PlotPoint is built with a strong foundation in OOP principles, ensuring maintain
       
 - **Polymorphism**:  
   - PlotPoint demonstrates polymorphism by enabling flexible and dynamic behavior across different classes and methods:
-      - Methods like `searchBooks` are designed to accept various input types, such as title, author, or genre, while providing consistent functionality regardless of the search parameter. This ensures users can interact with the system intuitively without requiring separate methods for each case.
       - The `Menu` class and its subclasses (`UserMenu`, `BookSearchMenu`, etc.) exhibit polymorphism through the `displayMenu()` method. Each subclass provides its unique implementation of `displayMenu()`, allowing diverse menu behaviors while adhering to a unified interface. For example, `displayMenu()` in `BookSearchMenu` handles search operations, whereas `displayMenu()` in `UserMenu` presents user-specific options.
 
 - **Abstraction**:
